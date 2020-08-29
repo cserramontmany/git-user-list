@@ -60,6 +60,9 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "tsconfig.es5.app.json"
             }
           }
         },
@@ -123,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "git-user-list"
+    }
+  },
+  "defaultProject": "git-user-list",
+  "cli": {
+    "analytics": "ae0f0039-1e14-4bb5-8f76-6e6c021b6b01"
+  }
 }
