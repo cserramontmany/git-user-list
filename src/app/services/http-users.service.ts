@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, pipe } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { AppConsts } from "./../AppConsts";
+import { User } from "./../models/user-model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { environment } from '../../environments/environment';
 export class HttpUsersService {
 
   constructor(private http: HttpClient) {}
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -24,35 +26,19 @@ export class HttpUsersService {
     return throwError(error);
   }
 
-  // public getUsersFromEndPoint(): Observable<any[]> {
-  //   // Call the http GET
-  //   return this.http.get<any>(environment.remoteServiceUrl).pipe(
-  //     map((res) => {
-  //       let items: Item[] = <Item[]>res.items;
-  //       let favitems: ItemFavourite[] = [];
-  //       items.forEach(elem => {
-  //         favitems.push(this.mapItemToFavouriteItem(elem));
-  //       });
-  //       return favitems;
-  //     }),
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-
-  // public getUsersFromEndPoint(): Observable<ItemFavourite[]> {
-  //   // Call the http GET
-  //   return this.http.get<any>(environment.remoteServiceUrl).pipe(
-  //     map((res) => {
-  //       let items: Item[] = <Item[]>res.items;
-  //       let favitems: ItemFavourite[] = [];
-  //       items.forEach(elem => {
-  //         favitems.push(this.mapItemToFavouriteItem(elem));
-  //       });
-  //       return favitems;
-  //     }),
-  //     catchError(this.handleError)
-  //   );
-  // }
-
+  public getUsersFromEndPoint(): Observable<User[]> {
+    // Call the http GET
+    console.log(AppConsts.remoteServiceBaseUrl)
+    return this.http.get<User[]>(AppConsts.remoteServiceBaseUrl + 'users')
+    .pipe(
+          map((res) => {
+            const array: User[] = [];
+            res.forEach(elem => {
+              array.push(elem);
+            });
+            return array;
+          }),
+          catchError(this.handleError)
+    )
+  }
 }
