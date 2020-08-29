@@ -4,13 +4,16 @@ import { Observable, throwError, pipe } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { AppConsts } from "./../AppConsts";
 import { User } from "./../models/user-model";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpUsersService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _router: Router) {}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -28,8 +31,7 @@ export class HttpUsersService {
 
   public getUsersFromEndPoint(): Observable<User[]> {
     // Call the http GET
-    console.log(AppConsts.remoteServiceBaseUrl)
-    return this.http.get<User[]>(AppConsts.remoteServiceBaseUrl + 'users')
+    return this._http.get<User[]>(AppConsts.remoteServiceBaseUrl + 'users')
     .pipe(
           map((res) => {
             const array: User[] = [];
@@ -40,5 +42,21 @@ export class HttpUsersService {
           }),
           catchError(this.handleError)
     )
+  }
+
+  public getSingleUser(userloginName: string):Observable<User>{
+    console.log( AppConsts.remoteServiceBaseUrl + 'users' + '/'  + userloginName )
+    return this._http.get<any>(AppConsts.remoteServiceBaseUrl + 'users' + '/' + userloginName)
+    // .pipe(
+    //   map(res =>{
+    //     if(res.status == 404){
+    //       this._router.navigate(['page-not-found'])
+    //     }else{
+    //       const user: User = res; 
+    //       return user;
+    //     }
+    //   }),
+    //   catchError(this.handleError)
+    // );
   }
 }

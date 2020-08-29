@@ -1,0 +1,3 @@
+<div *ngFor="let user of users">
+<p [routerLink]="['/users', user.login]">{{user.login}}</p>
+</div>
