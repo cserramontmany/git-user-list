@@ -74,6 +74,9 @@
           "configurations": {
             "production": {
               "browserTarget": "git-user-list:build:production"
+            },
+            "es5": {
+              "browserTarget": "git-user-list:build:es5"
             }
           }
         },
