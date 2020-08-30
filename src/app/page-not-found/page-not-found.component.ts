@@ -22,4 +22,7 @@ export class PageNotFoundComponent implements OnInit {
     });
 }
 
+goHome():void{
+  this.router.navigate(['/users'])
+}
 }

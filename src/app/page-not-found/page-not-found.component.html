@@ -1,10 +1,12 @@
 <div class="container" [@routerTransition] *ngIf="url">
   <div class="row justify-content-center">
     <div class="col-6 failure-response">
-        <h3>404 Not Found</h3>
-        <p class="mb-1">Http failure response for:</p>
-        <p>{{ url }}</p>
-<button  class="btn btn-dark" [routerLink]="['/users']">return home</button>
+      <h3>404 Not Found</h3>
+      <p class="mb-1" *ngIf="url">Http failure response for:</p>
+      <p *ngIf="url">{{ url }}</p>
+      <button class="btn btn-dark" (click)="goHome()">
+        return home
+      </button>
     </div>
   </div>
 </div>
