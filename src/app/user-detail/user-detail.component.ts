@@ -4,11 +4,13 @@ import { HttpUsersService } from '../services/http-users.service';
 import { User } from '../models/user-model';
 import { finalize } from 'rxjs/operators';
 import { Repos } from '../models/repos-model';
+import { slideFromBottom } from './../../shared/animations/routerTransition';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  styleUrls: ['./user-detail.component.scss'],
+  animations: [slideFromBottom()]
 })
 export class UserDetailComponent implements OnInit {
   userloginName: string; 
