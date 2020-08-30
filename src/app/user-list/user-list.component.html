@@ -1,3 +1,15 @@
+<form >
+    <div class="form-group">
+        <label for="inputName">find users</label>
+        <input type="text" class="form-control" 
+        id="inputName" 
+        name="inputName" 
+        aria-describedby="inputName"
+        [(ngModel)]="filterText"
+        (ngModelChange)="search()">
+    </div>
+</form>
+
 <div *ngFor="let user of users">
-<p [routerLink]="['/users', user.login]">{{user.login}}</p>
+    <p [routerLink]="['/users', user.login]">{{user.login}}</p>
 </div>

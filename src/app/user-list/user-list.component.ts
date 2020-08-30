@@ -9,7 +9,7 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  
+  filterText: string = '';
   users: User[];
 
   constructor(private _httpUserService: HttpUsersService) {}
@@ -23,5 +23,12 @@ export class UserListComponent implements OnInit {
     ).subscribe(res=> this.users = res);
   }
 
-
+  search():void{
+    // this._httpUserService.getFilteredUsers(this.filterText)
+    //   .subscribe(res=> {
+    //     console.log(res)
+    //     //this.users = res
+    //   })
+  }
 }
+
