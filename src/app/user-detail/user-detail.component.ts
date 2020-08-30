@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpUsersService } from '../services/http-users.service';
 import { User } from '../models/user-model';
@@ -12,7 +12,7 @@ import { slideFromBottom } from './../../shared/animations/routerTransition';
   styleUrls: ['./user-detail.component.scss'],
   animations: [slideFromBottom()]
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, AfterViewChecked {
   userloginName: string; 
   user: User;
   followers: User[];
@@ -33,6 +33,14 @@ export class UserDetailComponent implements OnInit {
           this.getUser();
       }
     );
+  }
+  ngAfterViewChecked() {
+    // Hack: Scrolls to top of Page after page view initialized
+    let top = document.getElementById('top');
+    if (top !== null) {
+      top.scrollIntoView();
+      top = null;
+    }
   }
 
   getUser():void{
