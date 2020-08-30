@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

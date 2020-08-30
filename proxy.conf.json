@@ -1,0 +1,12 @@
+{
+  "devServer": {
+    "historyApiFallback": true,
+    "proxy": {
+      "/api": {
+        "target": "https://api.github.com",
+        "secure": false,
+        "logLevel": "debug"
+      }
+    }
+  }
+}

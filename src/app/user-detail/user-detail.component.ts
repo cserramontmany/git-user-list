@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpUsersService } from '../services/http-users.service';
 import { User } from '../models/user-model';
 import { finalize } from 'rxjs/operators';
 import { Repos } from '../models/repos-model';
-import { slideFromBottom } from './../../shared/animations/routerTransition';
+import { slideFromBottom } from './../shared/animations/routerTransition';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,15 +20,16 @@ export class UserDetailComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private route: ActivatedRoute, 
-    private _httpUserService: HttpUsersService) { }
+    private _httpUserService: HttpUsersService,
+    private _router: Router) { }
 
   ngOnInit(): void {
     //this.userloginName = this.route.snapshot.params['name'];
+    // Subscibing to the route instead of snapshot let us to reload 
+    // the component itself if the route changes, in this case with selecting any follower. 
     this.route.params
       .subscribe(
         (params: Params)=>{
-          console.log(params.name)
-          // let name = JSON.parse(res.name)
           this.userloginName = params.name
           this.getUser();
       }
@@ -36,6 +37,7 @@ export class UserDetailComponent implements OnInit, AfterViewChecked {
   }
   ngAfterViewChecked() {
     // Hack: Scrolls to top of Page after page view initialized
+    // if selecting any follower 
     let top = document.getElementById('top');
     if (top !== null) {
       top.scrollIntoView();
@@ -54,6 +56,10 @@ export class UserDetailComponent implements OnInit, AfterViewChecked {
       )
       .subscribe(res =>{
           this.user = res;
+        },
+        error => {
+          this._router.navigate(['page-not-found'], { queryParams: { url: error.url } });
+          console.log('oops', error)
         })
     }
   }
