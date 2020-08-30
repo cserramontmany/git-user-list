@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration es5",
+    "start": "ng serve --configuration es5 --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "classlist.js": "^1.1.20150312",
+    "ngx-bootstrap": "^5.6.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",

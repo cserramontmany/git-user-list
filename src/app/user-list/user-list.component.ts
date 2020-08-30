@@ -24,11 +24,11 @@ export class UserListComponent implements OnInit {
   }
 
   search():void{
-    // this._httpUserService.getFilteredUsers(this.filterText)
-    //   .subscribe(res=> {
-    //     console.log(res)
-    //     //this.users = res
-    //   })
+    this._httpUserService.getFilteredUsers(this.filterText)
+      .subscribe(res=> {
+        console.log(res)
+        this.users = res
+      })
   }
 }
 
