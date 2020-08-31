@@ -6,25 +6,21 @@ import { slideFromBottom } from '../shared/animations/routerTransition';
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
-  animations: [slideFromBottom()]
+  animations: [slideFromBottom()],
 })
 export class PageNotFoundComponent implements OnInit {
-  url: string ='page not found! ';
+  url: string = 'page not found! ';
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {}
-    
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit(): void {
-    this.route
-    .queryParams
-    .subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       // Defaults to 0 if no query param provided.
       this.url = params['url'];
     });
-}
+  }
 
-goHome():void{
-  this.router.navigate(['/users'])
-}
+  goHome(): void {
+    this.router.navigate(['/users']);
+  }
 }
