@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpUsersService } from '../services/http-users.service';
 import { User } from '../models/user-model';
 import { finalize } from 'rxjs/operators';
-import { slideFromBottom } from './../shared/animations/routerTransition';
+import { slideFromBottom } from '../shared/animations/routerTransition';
 
 @Component({
   selector: 'app-user-list',

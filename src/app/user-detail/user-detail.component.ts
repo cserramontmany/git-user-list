@@ -4,7 +4,7 @@ import { HttpUsersService } from '../services/http-users.service';
 import { User } from '../models/user-model';
 import { finalize } from 'rxjs/operators';
 import { Repos } from '../models/repos-model';
-import { slideFromBottom } from './../shared/animations/routerTransition';
+import { slideFromBottom } from '../shared/animations/routerTransition';
 
 @Component({
   selector: 'app-user-detail',
